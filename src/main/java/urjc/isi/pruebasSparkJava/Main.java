@@ -12,17 +12,18 @@ public class Main {
   
     public static String doWork(Request request, Response response) throws ClassNotFoundException, URISyntaxException {
 	String result = new String("Hello World");
-
 	return result;
     }
 
+
     public static void main(String[] args) throws ClassNotFoundException {
         port(getHerokuAssignedPort());
-
         // spark server
         get("/hello", Main::doWork);
-
-    }
+        get("/adios", Main2::doLast);
+        post("/comentario", Comentarios::postComent);
+        post("/comentario", Puntuacion::postScore);
+    } 
 
     static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
